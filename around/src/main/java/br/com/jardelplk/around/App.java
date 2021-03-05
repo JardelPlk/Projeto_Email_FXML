@@ -45,5 +45,7 @@ public class App extends Application {
     public static void logoutInit() {
     	stage.close();
     }
+    
+    
 
 }

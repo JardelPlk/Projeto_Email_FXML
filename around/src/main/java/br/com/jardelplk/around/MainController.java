@@ -35,14 +35,17 @@ public class MainController {
 	
 	@FXML
 	private void contato() {
-		App.changeResizable();
 		App.setRoot("contato");
 	}
 	
 	@FXML
 	private void email() {
-		App.changeResizable();
 		App.setRoot("email");
 	}
 	
+	@FXML
+	private void emailEnviado() {
+		App.changeResizable();
+		App.setRoot("emailEnviado");
+	}
 }
