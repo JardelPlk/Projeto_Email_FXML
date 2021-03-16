@@ -78,14 +78,12 @@ public class MainController {
 		userEmailList.setItems(FXCollections.observableArrayList(userEmails));
 	}
 	
-	@FXML
-	private void remove() {
-		String assuntoEmail = userEmailList.getSelectionModel().getSelectedItem();
-		Email email = new EmailDAO().get(assuntoEmail);
-		user.getEmails().remove(email);
-		new UserDAO().persist(user);
-		updateEmail();
-	}
+	/*
+	 * @FXML private void remove() { String assuntoEmail =
+	 * userEmailList.getSelectionModel().getSelectedItem(); Email email = new
+	 * EmailDAO().get(assuntoEmail); user.getEmails().remove(email); new
+	 * UserDAO().persist(user); updateEmail(); }
+	 */
 	
 	@FXML
 	private void information() {
