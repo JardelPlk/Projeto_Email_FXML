@@ -12,6 +12,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import br.com.jardelplk.around.AlertUtil;
+import br.com.jardelplk.around.Contato;
 import br.com.jardelplk.around.Email;
 import br.com.jardelplk.around.User;
 import javafx.scene.control.Alert;
@@ -58,6 +59,12 @@ public class UtilDB {
 		new EmailDAO().persist(e2);
 		
 		u.getEmails().add(e1);
+		new UserDAO().persist(u);
+		
+		Contato c1 = new Contato("jardel@gmail.com");
+		
+		new ContatoDAO().persist(c1);
+		u.getContatos().add(c1);
 		new UserDAO().persist(u);
 		
 

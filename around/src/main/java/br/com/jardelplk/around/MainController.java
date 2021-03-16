@@ -26,6 +26,9 @@ public class MainController {
 
 	@FXML
 	private ListView<String> userEmailList;
+	
+	@FXML
+	private ListView<String> userContatoList;
 
 	@FXML
 	private Button btnOpen;
@@ -78,12 +81,22 @@ public class MainController {
 		userEmailList.setItems(FXCollections.observableArrayList(userEmails));
 	}
 	
-	/*
-	 * @FXML private void remove() { String assuntoEmail =
-	 * userEmailList.getSelectionModel().getSelectedItem(); Email email = new
-	 * EmailDAO().get(assuntoEmail); user.getEmails().remove(email); new
-	 * UserDAO().persist(user); updateEmail(); }
-	 */
+	@FXML
+	private void updateContato() {
+		List<String> userContato = new ArrayList<>();
+		for(Contato e : user.getContatos())
+			userContato.add(e.getUsername());
+		userContatoList.setItems(FXCollections.observableArrayList(userContato));
+	}
+	
+	
+	@FXML 
+	private void remove() { 
+		String assuntoEmail = userEmailList.getSelectionModel().getSelectedItem(); 
+		Email email = new EmailDAO().get(assuntoEmail); user.getEmails().remove(email); 
+		new UserDAO().persist(user); updateEmail(); 
+	}
+	
 	
 	@FXML
 	private void information() {

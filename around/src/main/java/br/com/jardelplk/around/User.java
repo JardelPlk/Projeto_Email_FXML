@@ -17,6 +17,9 @@ public class User {
 	@ManyToMany
 	private List<Email> emails;
 	
+	@ManyToMany
+	private List<Contato> contatos;
+	
 	public User() {
 	}
 	
@@ -25,6 +28,7 @@ public class User {
 		this.username = username;
 		this.password = password;
 		this.emails = new ArrayList<>();
+		this.contatos = new ArrayList<>();
 	}
 
 	public String getUsername() {
@@ -49,6 +53,14 @@ public class User {
 
 	public void setEmails(List<Email> emails) {
 		this.emails = emails;
+	}
+
+	public List<Contato> getContatos() {
+		return contatos;
+	}
+
+	public void setContatos(List<Contato> contatos) {
+		this.contatos = contatos;
 	}
 
 	@Override
