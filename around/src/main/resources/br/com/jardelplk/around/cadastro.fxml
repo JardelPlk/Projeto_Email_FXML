@@ -76,12 +76,12 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField>
+                  <TextField fx:id="txtEmail">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField>
+                  <TextField fx:id="txtPassword">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
@@ -110,7 +110,7 @@
       </HBox>
       <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="190.0">
          <children>
-            <Button fx:id="btnConcluir" mnemonicParsing="false" onAction="#tarefaConcluida" text="Concluir ">
+            <Button fx:id="btnConcluir" mnemonicParsing="false" onAction="#registerCadastro" text="Concluir ">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>

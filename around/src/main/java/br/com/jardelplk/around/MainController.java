@@ -1,5 +1,6 @@
 package br.com.jardelplk.around;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 
@@ -47,5 +48,10 @@ public class MainController {
 	private void emailEnviado() {
 		App.changeResizable();
 		App.setRoot("emailEnviado");
+	}
+	
+	@FXML
+	private void exit() {
+		Platform.exit();
 	}
 }
