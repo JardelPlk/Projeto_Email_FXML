@@ -1,7 +1,11 @@
 package br.com.jardelplk.around;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class User {
@@ -10,6 +14,9 @@ public class User {
 	private String username;
 	private String password;
 	
+	@ManyToMany
+	private List<Email> emails;
+	
 	public User() {
 	}
 	
@@ -17,6 +24,7 @@ public class User {
 		super();
 		this.username = username;
 		this.password = password;
+		this.emails = new ArrayList<>();
 	}
 
 	public String getUsername() {
@@ -33,6 +41,14 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public List<Email> getEmails() {
+		return emails;
+	}
+
+	public void setEmails(List<Email> emails) {
+		this.emails = emails;
 	}
 
 	@Override

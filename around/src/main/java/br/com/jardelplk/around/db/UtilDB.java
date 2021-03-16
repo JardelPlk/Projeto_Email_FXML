@@ -51,10 +51,15 @@ public class UtilDB {
 		User u = new User("admin", "teste");
 		new UserDAO().persist(u);
 		
-		new EmailDAO().persist(new Email("Auditoria", u.getUsername(), "joao@gmail.com", "Auditoria marcada para ás 15:00 horas."));
-		new EmailDAO().persist(new Email("Palestra", u.getUsername(), "daniel@hotmail.com", "Palestra de hoje cancelada."));
+		Email e1 = new Email("Auditoria", u.getUsername(), "joao@gmail.com", "Auditoria marcada para ás 15:00 horas.");
+		Email e2 = new Email("Palestra", u.getUsername(), "daniel@hotmail.com", "Palestra de hoje cancelada.");
 		
-		new EmailDAO().persist(new Email("Palestra", u.getUsername(), "daniel@hotmail.com", "Palestra de hoje remarcada."));
+		new EmailDAO().persist(e1);
+		new EmailDAO().persist(e2);
+		
+		u.getEmails().add(e1);
+		new UserDAO().persist(u);
+		
 
 	}
 	

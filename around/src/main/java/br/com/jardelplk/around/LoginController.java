@@ -56,8 +56,9 @@ public class LoginController {
 			return;
 		}
 		
+		MainController.setUser(u);
 		App.changeResizable();//Estava em falso vai pra true
-		App.setRoot("main");
+		App.setRoot("main2");
 	}
 	
 	@FXML
@@ -80,12 +81,6 @@ public class LoginController {
 		this.stage.close();
 	}
 	
-	@FXML
-	private void tarefaConcluida() {
-	    stage.setScene(FXMLUtil.loadScene("tarefaConcluida"));
-	    stage.setResizable(false);
-	    stage.show(); 
-	}
 	
 	@FXML
 	private void exit() {
