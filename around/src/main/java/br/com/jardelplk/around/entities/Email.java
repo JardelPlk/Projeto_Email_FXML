@@ -1,48 +1,48 @@
-package br.com.jardelplk.around;
+package br.com.jardelplk.around.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
 public class Email {
-	
+
 	@Id
 	private String assunto;
-	private String autor;
+
 	private String destinatario;
-	private String mensagem;
 	
+	private String mensagem;
+
 	public Email() {
 	}
-	
-	public Email(String assunto, String autor, String destinatario, String mensagem) {
+
+	public Email(String assunto, String destinatario, String mensagem) {
 		super();
 		this.assunto = assunto;
-		this.autor = autor;
 		this.destinatario = destinatario;
 		this.mensagem = mensagem;
 	}
+
 	public String getAssunto() {
 		return assunto;
 	}
+
 	public void setAssunto(String assunto) {
 		this.assunto = assunto;
 	}
-	public String getAutor() {
-		return autor;
-	}
-	public void setAutor(String autor) {
-		this.autor = autor;
-	}
+
 	public String getDestinatario() {
 		return destinatario;
 	}
+
 	public void setDestinatario(String destinatario) {
 		this.destinatario = destinatario;
 	}
+
 	public String getMensagem() {
 		return mensagem;
 	}
+
 	public void setMensagem(String mensagem) {
 		this.mensagem = mensagem;
 	}
@@ -52,6 +52,8 @@ public class Email {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((assunto == null) ? 0 : assunto.hashCode());
+		result = prime * result + ((destinatario == null) ? 0 : destinatario.hashCode());
+		result = prime * result + ((mensagem == null) ? 0 : mensagem.hashCode());
 		return result;
 	}
 
@@ -69,7 +71,20 @@ public class Email {
 				return false;
 		} else if (!assunto.equals(other.assunto))
 			return false;
+		if (destinatario == null) {
+			if (other.destinatario != null)
+				return false;
+		} else if (!destinatario.equals(other.destinatario))
+			return false;
+		if (mensagem == null) {
+			if (other.mensagem != null)
+				return false;
+		} else if (!mensagem.equals(other.mensagem))
+			return false;
 		return true;
 	}
+
 	
+
 }
+

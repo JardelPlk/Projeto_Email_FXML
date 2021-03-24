@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane alignment="CENTER" gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.jardelplk.around.RegisterController">
+<GridPane alignment="CENTER" gridLinesVisible="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.jardelplk.around.controllers.RegisterController">
   <columnConstraints>
     <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" />
   </columnConstraints>
@@ -60,7 +60,7 @@
       </GridPane>
       <HBox alignment="CENTER" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
          <children>
-            <Button fx:id="btnRegister" mnemonicParsing="false" onAction="#registerCadastro" text="Cadastrar">
+            <Button fx:id="btnRegister" mnemonicParsing="false" onAction="#register" text="Cadastrar">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>

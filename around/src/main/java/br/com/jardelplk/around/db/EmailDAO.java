@@ -5,26 +5,25 @@ import java.util.List;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 
-import br.com.jardelplk.around.Email;
+import br.com.jardelplk.around.entities.Email;
 
 public class EmailDAO implements InterfaceDAO<Email> {
 
 	@Override
-	public void persist(Email t) {
+	public void persist(Email email) {
 		EntityManager em = UtilDB.getEntityManager();
 		try {
 			em.getTransaction().begin();
-			em.persist(t);
+			em.persist(email);
 			em.getTransaction().commit();
 		} catch (EntityExistsException e) {
-			em.getTransaction().rollback();//Para finalizar o ultimo transaction
-			Email original = get(t.getAssunto());
+			em.getTransaction().rollback();
+			Email original = get(email.getAssunto());
 			em.getTransaction().begin();
-			original.setDestinatario(t.getDestinatario());
-			original.setMensagem(t.getMensagem());
+			original.setDestinatario(original.getDestinatario());
+			original.setMensagem(original.getMensagem());
 			em.getTransaction().commit();
 		}
-		
 	}
 
 	@Override
@@ -34,7 +33,7 @@ public class EmailDAO implements InterfaceDAO<Email> {
 		em.remove(t);
 		em.getTransaction().commit();
 	}
-	
+
 	@Override
 	public Email get(Object pk) {
 		return UtilDB.getEntityManager().find(Email.class, pk);
@@ -44,5 +43,4 @@ public class EmailDAO implements InterfaceDAO<Email> {
 	public List<Email> getAll() {
 		return UtilDB.getEntityManager().createQuery("SELECT e FROM Email e", Email.class).getResultList();
 	}
-
 }

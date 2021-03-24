@@ -5,42 +5,41 @@ import java.util.List;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 
-import br.com.jardelplk.around.Contato;
+import br.com.jardelplk.around.entities.Aplicativo;
 
-public class ContatoDAO implements InterfaceDAO<Contato> {
+public class AplicativoDAO implements InterfaceDAO<Aplicativo> {
 
 	@Override
-	public void persist(Contato t) {
+	public void persist(Aplicativo t) {
 		EntityManager em = UtilDB.getEntityManager();
 		try {
 			em.getTransaction().begin();
 			em.persist(t);
 			em.getTransaction().commit();
 		} catch (EntityExistsException e) {
-			em.getTransaction().rollback();//Para finalizar o ultimo transaction
-			Contato original = get(t.getUsername());
+			em.getTransaction().rollback();
+			Aplicativo original = get(t.getNome());
 			em.getTransaction().begin();
+			original.setDescricao(t.getDescricao());
 			em.getTransaction().commit();
 		}
-		
 	}
 
 	@Override
-	public void remove(Contato t) {
+	public void remove(Aplicativo t) {
 		EntityManager em = UtilDB.getEntityManager();
 		em.getTransaction().begin();
 		em.remove(t);
 		em.getTransaction().commit();
 	}
-	
+
 	@Override
-	public Contato get(Object pk) {
-		return UtilDB.getEntityManager().find(Contato.class, pk);
+	public Aplicativo get(Object pk) {
+		return UtilDB.getEntityManager().find(Aplicativo.class, pk);
 	}
 
 	@Override
-	public List<Contato> getAll() {
-		return UtilDB.getEntityManager().createQuery("SELECT u FROM Contato u", Contato.class).getResultList();
+	public List<Aplicativo> getAll() {
+		return UtilDB.getEntityManager().createQuery("SELECT a FROM Aplicativo a", Aplicativo.class).getResultList();
 	}
-
 }

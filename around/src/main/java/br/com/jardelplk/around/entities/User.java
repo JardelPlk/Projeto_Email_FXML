@@ -1,4 +1,4 @@
-package br.com.jardelplk.around;
+package br.com.jardelplk.around.entities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,26 +9,27 @@ import javax.persistence.ManyToMany;
 
 @Entity
 public class User {
-	
+
 	@Id
 	private String username;
+
 	private String password;
+
+	@ManyToMany
+	private List<Aplicativo> apps;
 	
 	@ManyToMany
 	private List<Email> emails;
-	
-	@ManyToMany
-	private List<Contato> contatos;
-	
+
 	public User() {
 	}
-	
+
 	public User(String username, String password) {
 		super();
 		this.username = username;
 		this.password = password;
+		this.apps = new ArrayList<>();
 		this.emails = new ArrayList<>();
-		this.contatos = new ArrayList<>();
 	}
 
 	public String getUsername() {
@@ -46,21 +47,21 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
+	public List<Aplicativo> getAplicativos() {
+		return apps;
+	}
+
+	public void setAplicativos(List<Aplicativo> apps) {
+		this.apps = apps;
+	}
+
 	public List<Email> getEmails() {
 		return emails;
 	}
 
 	public void setEmails(List<Email> emails) {
 		this.emails = emails;
-	}
-
-	public List<Contato> getContatos() {
-		return contatos;
-	}
-
-	public void setContatos(List<Contato> contatos) {
-		this.contatos = contatos;
 	}
 
 	@Override
@@ -87,9 +88,5 @@ public class User {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
-	
+
 }

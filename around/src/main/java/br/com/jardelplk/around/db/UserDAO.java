@@ -5,25 +5,32 @@ import java.util.List;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 
-import br.com.jardelplk.around.User;
+import br.com.jardelplk.around.entities.Aplicativo;
+import br.com.jardelplk.around.entities.Email;
+import br.com.jardelplk.around.entities.User;
 
 public class UserDAO implements InterfaceDAO<User> {
 
 	@Override
-	public void persist(User t) {
+	public void persist(User user) {
 		EntityManager em = UtilDB.getEntityManager();
 		try {
 			em.getTransaction().begin();
-			em.persist(t);
+			em.persist(user);
 			em.getTransaction().commit();
 		} catch (EntityExistsException e) {
-			em.getTransaction().rollback();//Para finalizar o ultimo transaction
-			User original = get(t.getUsername());
+			em.getTransaction().rollback();
+			User original = get(user.getUsername());
 			em.getTransaction().begin();
-			original.setPassword(t.getPassword());
+			original.setPassword(user.getPassword());
+			original.getAplicativos().clear();
+			for (Aplicativo a1 : user.getAplicativos())
+				original.getAplicativos().add(a1);
+			original.getEmails().clear();
+			for(Email e1 : user.getEmails())
+				original.getEmails().add(e1);
 			em.getTransaction().commit();
 		}
-		
 	}
 
 	@Override
@@ -33,7 +40,7 @@ public class UserDAO implements InterfaceDAO<User> {
 		em.remove(t);
 		em.getTransaction().commit();
 	}
-	
+
 	@Override
 	public User get(Object pk) {
 		return UtilDB.getEntityManager().find(User.class, pk);
@@ -43,5 +50,4 @@ public class UserDAO implements InterfaceDAO<User> {
 	public List<User> getAll() {
 		return UtilDB.getEntityManager().createQuery("SELECT u FROM User u", User.class).getResultList();
 	}
-
 }

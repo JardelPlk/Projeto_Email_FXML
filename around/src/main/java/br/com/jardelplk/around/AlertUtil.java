@@ -11,7 +11,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 
 public class AlertUtil {
-	
+
 	public static Alert info(String title, String header, String content) {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle(title);
@@ -30,12 +30,12 @@ public class AlertUtil {
 		StringWriter sw = new StringWriter();
 		PrintWriter pw = new PrintWriter(sw);
 		String exceptionText = "";
-		if(ex != null) {
+		if (ex != null) {
 			ex.printStackTrace(pw);
 			exceptionText = sw.toString();
 		}
 
-		Label label = new Label("A pilha de execução da excessão é:");
+		Label label = new Label("A pilha de execução da exceção é:");
 
 		TextArea textArea = new TextArea(exceptionText);
 		textArea.setEditable(false);
@@ -54,8 +54,7 @@ public class AlertUtil {
 		// Set expandable Exception into the dialog pane.
 		alert.getDialogPane().setExpandableContent(expContent);
 
-		//alert.showAndWait();
 		return alert;
 	}
-	
+
 }

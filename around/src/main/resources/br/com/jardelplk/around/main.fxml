@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -14,8 +15,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.jardelplk.around.MainController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.jardelplk.around.controllers.MainController">
    <children>
       <MenuBar maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <menus>
@@ -37,9 +39,18 @@
             </Menu>
         </menus>
       </MenuBar>
-      <TabPane side="LEFT" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+      <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+         <children>
+            <Label fx:id="lblUserInfo" text="Label">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <TabPane side="LEFT" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
         <tabs>
-          <Tab onSelectionChanged="#updateEmail" text="Emails">
+          <Tab onSelectionChanged="#updateApps" text="Aplicativos">
             <content>
               <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0">
                      <children>
@@ -47,19 +58,27 @@
                           <items>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                  <children>
-                                    <ListView fx:id="userEmailList" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    <ListView fx:id="userAppsList" onMouseClicked="#updateDescription" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children></AnchorPane>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                  <children>
+                                    <Label fx:id="lblAppDescription" alignment="TOP_LEFT" text="App description" wrapText="true" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <font>
+                                          <Font name="Roboto" size="24.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </padding>
+                                    </Label>
                                     <Separator prefWidth="200.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
                                     <HBox alignment="CENTER" maxHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                                        <children>
-                                          <Button fx:id="btnOpen" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Abrir" HBox.hgrow="ALWAYS">
+                                          <Button fx:id="btnAcessar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Acessar" HBox.hgrow="ALWAYS">
                                              <HBox.margin>
                                                 <Insets right="10.0" />
                                              </HBox.margin>
                                           </Button>
-                                          <Button fx:id="btnRemove" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#remove" text="Excluir" HBox.hgrow="ALWAYS">
+                                          <Button fx:id="btnRemove" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#remove" text="Remover" HBox.hgrow="ALWAYS">
                                              <HBox.margin>
                                                 <Insets right="10.0" />
                                              </HBox.margin>
@@ -77,29 +96,30 @@
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab onSelectionChanged="#updateContato" text="Contatos">
+            <Tab onSelectionChanged="#updateEmails" text="Emails">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <SplitPane dividerPositions="0.3" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <SplitPane dividerPositions="0.5975395430579965" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <items>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                  <children>
-                                    <ListView fx:id="userContatoList" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                                    <ListView fx:id="userEmailsList" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
                                  </children></AnchorPane>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                  <children>
-                                    <TextArea disable="true" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                                    <TextArea fx:id="txtDestinatario" prefHeight="200.0" prefWidth="200.0" promptText="Destinatario" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="240.0" />
                                     <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="666.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                                        <children>
-                                          <TextArea maxHeight="-Infinity" minHeight="-Infinity" prefHeight="60.0" HBox.hgrow="ALWAYS">
+                                          <TextArea fx:id="txtMensagem" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="60.0" promptText="Mensagem" HBox.hgrow="ALWAYS">
                                              <HBox.margin>
                                                 <Insets right="10.0" />
                                              </HBox.margin>
                                           </TextArea>
-                                          <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="60.0" text="Enviar" HBox.hgrow="NEVER" />
+                                          <Button fx:id="btnEnviar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#enviarEmail" prefHeight="26.0" prefWidth="60.0" text="Enviar" HBox.hgrow="NEVER" />
                                        </children>
                                     </HBox>
+                                    <TextArea fx:id="txtAssunto" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" promptText="Assunto" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="200.0" />
                                  </children></AnchorPane>
                            </items>
                         </SplitPane>
@@ -107,11 +127,11 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab onSelectionChanged="#updateTrash" text="Lixeira">
+            <Tab onSelectionChanged="#updateAppsStore" text="Loja">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TilePane fx:id="tileTrash" alignment="TOP_CENTER" hgap="100.0" vgap="100.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                        <TilePane fx:id="tileApps" alignment="TOP_CENTER" hgap="100.0" vgap="100.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
                      </children></AnchorPane>
                </content>
             </Tab>
